@@ -265,3 +265,7 @@ EPISODES = [
         "outro": ["End of episode four. That is the whole set. Well done."],
     },
 ]
+
+from content_more import MORE_EPISODES  # episodes 5 to 13
+
+EPISODES += MORE_EPISODES

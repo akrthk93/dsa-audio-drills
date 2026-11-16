@@ -2,7 +2,7 @@
 
 Screen-free spoken drills for coding-interview pattern recognition and time/space complexity. Each item is: a cue, a ticking gap to answer aloud, then the answer with a one-line reason.
 
-- `content.py`: all episode text, item IDs (`AU-xxx`, immutable) and sources.
+- `content.py` (episodes 1 to 4) and `content_more.py` (episodes 5 to 13): all episode text, item IDs (`AU-xxx`, immutable) and sources.
 - `generate.py`: renders audio with Kokoro TTS (`am_michael`, `en-us`, full-precision model), inserts the answer gaps with numpy, encodes m4a with ffmpeg, and writes the podcast feed. Its `LEXICON` table sets how Python names are spoken (`heapq` = "heap Q", `deque` = "deck", `.` = "dot").
 - `SCRIPTS.md`, `SOURCES.md`, `DECK-DIFF.md`: readable scripts, the source log with [V]/[U] tags, and the diff against the draft deck.
 - `docs/`: what GitHub Pages serves (`feed.xml`, `index.html`, `audio/*.m4a`).

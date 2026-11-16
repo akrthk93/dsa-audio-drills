@@ -42,6 +42,29 @@ Source hierarchy used: (1) Python docs, (2) NeetCode, (3) Hello Interview / Tech
 | F-33 | Longest consecutive run with a hash set in O(n) by starting only at numbers with no predecessor | Standard solution; single source | [U] |
 | F-34 | Top-k frequent can also be done in O(n) with frequency buckets | Deck SG-007; single external source | [U] |
 
+## Phases 2 to 4 (episodes 5 to 13, added 17 Nov 2026)
+
+Access note: page fetches needed an approval that went unanswered, so these facts were checked from search-result excerpts of the pages named, not from full reads. Python docs excerpts were available for `bisect` only.
+
+| ID | Fact | Sources | Tag |
+|---|---|---|---|
+| F-40 | `bisect_left` returns the insertion point before any equal entries, `bisect_right` after them; the list must already be sorted. `insort` is O(n): the O(log n) search is dominated by the O(n) insert | Python docs `bisect` (3.10, 3.13 and current pages) | [V] |
+| F-41 | Binary search on the answer: works when feasibility is monotonic; search the answer range and run a check each time. The banana-speed problem is O(n log m), m = largest pile | neetcode.io solution page (states the O(n log m) target); Exponent and AlgoMaster write-ups (monotonic argument) | [V] |
+| F-42 | Rotated sorted array (find minimum, find target) and the sorted 2-D matrix are binary-search problems | Plan step 10 and NeetCode mirrors list them under Binary Search; the "one half is always sorted" method is standard but not confirmed in two sources here | [U] |
+| F-43 | Linked list techniques: sentinel/dummy node when the head may change; fast and slow pointers for the middle and for cycle detection; in-place reversal in O(n) time, O(1) space; merge two lists in O(n + m) | Tech Interview Handbook linked-list page (mirror); Hello Interview linked-list overview; techinterview.org linked-list guide | [V] |
+| F-44 | Trees: BST in-order traversal is sorted; BST operations are O(log n) when balanced and O(n) when skewed; traversal space is O(h), which is O(n) for a skewed tree | Tech Interview Handbook tree page; yennj12 complexity cheat sheet; Interview Cake | [V] |
+| F-45 | BFS with a queue for level-order questions; bottom-up DFS returning height for diameter and balance checks | techinterview.org tree guide; Exponent tree lesson | [V] |
+| F-46 | Heap patterns: size-k heap for top-k in O(n log k), with a min-heap for the k largest; k-way merge O(N log k); two heaps for a running median (O(log n) add, O(1) read); quickselect O(n) average, O(n²) worst; meeting rooms = sort by start + min-heap of end times; searching a heap for an arbitrary value is O(n) | techinterview.org heap guides; designgurus heap article; lyte-code heap notes | [V] |
+| F-47 | Trie: search, insert and remove are O(m) in the word length; a trie plus DFS serves many words in one grid search | Tech Interview Handbook trie page (mirror); techinterview.org advanced tree guide | [V] |
+| F-48 | Backtracking: choose, explore, un-choose; subsets O(n · 2ⁿ), permutations O(n · n!); use it when all solutions are wanted, and DP when one optimum or a count is wanted | designgurus backtracking article; techinterview.org backtracking guides; resumelens DFS/backtracking article | [V] |
+| F-49 | Graphs: DFS, BFS and topological sort are O(V + E); BFS gives shortest paths when all edges cost the same; Dijkstra needs non-negative weights; Kruskal is O(E log E). **Sources write Dijkstra's cost two ways**: O((V + E) log V) and O(E log V). They agree for connected graphs; the audio says O(E log V) | University of Washington CSE 417 reference sheet; techinterview.org graph guide; archman.dev graph notes | [V] |
+| F-50 | Union-find with path compression and union by rank: amortised inverse-Ackermann per operation, effectively constant; used for cycle detection and Kruskal | University of Alaska CS 411 notes; techinterview.org graph guide | [V] |
+| F-51 | Intervals: sort by start, then extend the current interval when the next one begins before it ends; inserting into an already-sorted list needs one pass and no sort | techinterview.org pattern cheat sheet; dloizides interview-patterns notes | [V] |
+| F-52 | Greedy needs the greedy-choice property; earliest finish time is safe for picking non-overlapping intervals; arbitrary coin systems need DP; test with a small counterexample | mcfongtw algorithm-selection notes; gitconnected greedy article; d7m greedy notes | [V] |
+| F-53 | DP: signals are min cost, max, number of ways, longest; time = states × work per state; climbing stairs O(n) time, O(1) space; coin change O(amount × coins); LCS and edit distance O(m · n), space reducible to one or two rows; LIS O(n²) or O(n log n); 0/1 knapsack O(n · W) | techinterview.org DP guides; yennj12 complexity cheat sheet; scale.jobs DP summary | [V] |
+| F-54 | Python specifics not confirmed in this session (docs fetch was blocked): `heapq.merge` and `heapq.nlargest` behaviour and cost, `collections.OrderedDict` as an LRU base, and the recursion limit | From general knowledge only | [U] |
+| F-55 | Pronunciation fixes found while checking phonemes for episodes 5 to 13: "Dijkstra" (was "dayk-struh"), "memoize" (was "mem-oyz"), "N-th" and "K-th" (were spelled out letter by letter), "palindrome" (was "pay-lindrome"; this also affected one line in episode 2, now re-rendered), "trie" (now "try") | kokoro-onnx tokenizer output for `en-us` | [V] (phonemes), [U] by ear |
+
 ## Constraints and budgets
 
 | ID | Fact | Sources | Tag |

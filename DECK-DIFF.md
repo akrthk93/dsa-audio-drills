@@ -59,6 +59,13 @@ That is about 3×10⁷ empty iterations a second. A real loop body (an index, a 
 - **SG-001's** "bitmask DP" mention: the audio keeps "n ≤ 20 means exponential is fine" and drops the DP reference.
 - **Deck B (PS cards)**: typed skeletons do not work in audio. Only their complexity facts are used.
 
+**Update 17 Nov 2026:** Karthik asked for the remaining phases, so episodes 5 to 13 now cover everything in this section except Deck B. Mapping: SG-005 and SG-008 → Ep 5; CX-017 → Ep 7; SG-007, CX-013, CX-014, PS-005 → Ep 8; SG-001, SG-010, CX-021, CX-022 → Ep 9; SG-009, SG-014, CX-016, CX-018, PS-003 → Ep 10; SG-011, CX-019, CX-020 → Ep 12. This lifts the brief's "no DP or graphs until he reaches them" rule at his request. Each episode opens with a lesson, but a cue drill for a pattern you have not yet solved problems in trains recall of the answer, not recognition. Listen to each episode when you reach that step of the plan.
+
+Found while writing them:
+- **SG-009** says "Dijkstra only when edges have different positive weights". Sources put the requirement as non-negative weights. Zero-weight edges are fine. Minor wording fix.
+- **Dijkstra's cost** is written O((V + E) log V) by some sources and O(E log V) by others. The audio says O(E log V).
+- Math & Geometry and Bit Manipulation (plan steps 36 and 37) are left out: they are tricks to memorise, not patterns to recognise from a cue.
+
 ## 4. Things the audio adds that the deck does not have
 
 - `pop(0)` on a list is O(n); `deque.popleft()` is O(1) (AU-214, AU-311) [V].

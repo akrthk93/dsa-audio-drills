@@ -29,7 +29,7 @@
       <description>21 listen-and-answer-aloud items. Screen-free.</description>
       <guid isPermaLink="false">dsa-audio-drills-v1-ep2</guid>
       <pubDate>Mon, 16 Nov 2026 02:00:00 GMT</pubDate>
-      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep2-cue-to-pattern.m4a" length="4502097" type="audio/x-m4a"/>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep2-cue-to-pattern.m4a" length="4497878" type="audio/x-m4a"/>
       <itunes:duration>560</itunes:duration>
       <itunes:episode>2</itunes:episode>
       <itunes:explicit>false</itunes:explicit>
@@ -52,6 +52,96 @@
       <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep4-mixed-review.m4a" length="3905103" type="audio/x-m4a"/>
       <itunes:duration>488</itunes:duration>
       <itunes:episode>4</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>5. Binary search, and searching on the answer</title>
+      <description>15 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep5</guid>
+      <pubDate>Mon, 16 Nov 2026 05:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep5-binary-search.m4a" length="3790094" type="audio/x-m4a"/>
+      <itunes:duration>471</itunes:duration>
+      <itunes:episode>5</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>6. Linked list</title>
+      <description>15 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep6</guid>
+      <pubDate>Mon, 16 Nov 2026 06:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep6-linked-list.m4a" length="3424001" type="audio/x-m4a"/>
+      <itunes:duration>427</itunes:duration>
+      <itunes:episode>6</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>7. Trees</title>
+      <description>16 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep7</guid>
+      <pubDate>Mon, 16 Nov 2026 07:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep7-trees.m4a" length="3582831" type="audio/x-m4a"/>
+      <itunes:duration>447</itunes:duration>
+      <itunes:episode>7</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>8. Heap, priority queue, and tries</title>
+      <description>15 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep8</guid>
+      <pubDate>Mon, 16 Nov 2026 08:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep8-heap-and-tries.m4a" length="3509235" type="audio/x-m4a"/>
+      <itunes:duration>437</itunes:duration>
+      <itunes:episode>8</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>9. Backtracking</title>
+      <description>13 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep9</guid>
+      <pubDate>Mon, 16 Nov 2026 09:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep9-backtracking.m4a" length="2975280" type="audio/x-m4a"/>
+      <itunes:duration>372</itunes:duration>
+      <itunes:episode>9</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>10. Graphs</title>
+      <description>17 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep10</guid>
+      <pubDate>Mon, 16 Nov 2026 10:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep10-graphs.m4a" length="3956937" type="audio/x-m4a"/>
+      <itunes:duration>493</itunes:duration>
+      <itunes:episode>10</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>11. Intervals and greedy</title>
+      <description>14 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep11</guid>
+      <pubDate>Mon, 16 Nov 2026 11:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep11-intervals-and-greedy.m4a" length="3289686" type="audio/x-m4a"/>
+      <itunes:duration>410</itunes:duration>
+      <itunes:episode>11</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>12. Dynamic programming, one and two dimensional</title>
+      <description>16 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep12</guid>
+      <pubDate>Mon, 16 Nov 2026 12:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep12-dynamic-programming.m4a" length="3927882" type="audio/x-m4a"/>
+      <itunes:duration>488</itunes:duration>
+      <itunes:episode>12</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>13. Mixed review: episodes 5 to 12</title>
+      <description>20 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep13</guid>
+      <pubDate>Mon, 16 Nov 2026 13:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep13-mixed-review-phases-2-to-4.m4a" length="2711006" type="audio/x-m4a"/>
+      <itunes:duration>345</itunes:duration>
+      <itunes:episode>13</itunes:episode>
       <itunes:explicit>false</itunes:explicit>
     </item>
   </channel>
