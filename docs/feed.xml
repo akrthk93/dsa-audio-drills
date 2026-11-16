@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DSA Pattern Drills</title>
+    <link>https://akrthk93.github.io/dsa-audio-drills/</link>
+    <atom:link href="https://akrthk93.github.io/dsa-audio-drills/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-gb</language>
+    <description>Spoken pattern-recognition and complexity drills for coding interviews. Listen, answer aloud in the gap, hear the answer.</description>
+    <itunes:author>Karthik</itunes:author>
+    <itunes:summary>Spoken pattern-recognition and complexity drills for coding interviews.</itunes:summary>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:type>serial</itunes:type>
+    <itunes:block>yes</itunes:block>
+    <itunes:category text="Education"/>
+    <itunes:image href="https://akrthk93.github.io/dsa-audio-drills/cover.png"/>
+    <image><url>https://akrthk93.github.io/dsa-audio-drills/cover.png</url><title>DSA Pattern Drills</title><link>https://akrthk93.github.io/dsa-audio-drills/</link></image>
+    <item>
+      <title>1. Lesson, then constraints to complexity</title>
+      <description>16 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep1</guid>
+      <pubDate>Mon, 16 Nov 2026 01:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep1-constraints-to-complexity.m4a" length="3928611" type="audio/x-m4a"/>
+      <itunes:duration>499</itunes:duration>
+      <itunes:episode>1</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>2. Cue to pattern: hashing, two pointers, sliding window, stack</title>
+      <description>21 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep2</guid>
+      <pubDate>Mon, 16 Nov 2026 02:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep2-cue-to-pattern.m4a" length="4629093" type="audio/x-m4a"/>
+      <itunes:duration>586</itunes:duration>
+      <itunes:episode>2</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>3. Complexity of described code</title>
+      <description>20 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep3</guid>
+      <pubDate>Mon, 16 Nov 2026 03:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep3-complexity-of-described-code.m4a" length="3995613" type="audio/x-m4a"/>
+      <itunes:duration>509</itunes:duration>
+      <itunes:episode>3</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    <item>
+      <title>4. Mixed review</title>
+      <description>22 listen-and-answer-aloud items. Screen-free.</description>
+      <guid isPermaLink="false">dsa-audio-drills-v1-ep4</guid>
+      <pubDate>Mon, 16 Nov 2026 04:00:00 GMT</pubDate>
+      <enclosure url="https://akrthk93.github.io/dsa-audio-drills/audio/ep4-mixed-review.m4a" length="3882375" type="audio/x-m4a"/>
+      <itunes:duration>495</itunes:duration>
+      <itunes:episode>4</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+  </channel>
+</rss>
