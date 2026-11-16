@@ -1,6 +1,6 @@
 # Audio drill scripts (v1)
 
-Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking answer gap, answer plus one-line reason. Tags: [V] verified, [U] unverified. Sources point to deck cards (CX-/SG-/PS-), facts in the source log (F-xx) or earlier items (AU-xxx). AU IDs are immutable.
+Voice: Kokoro `am_michael`, `lang="en-us"`, speed 1.0. Item format: cue, ticking answer gap, answer plus one-line reason. Python names are written exactly; they are spoken as: heapq = "heap Q", deque = "deck", a dot between names = "dot", pop(0) = "pop zero", popleft = "pop left". Tags: [V] verified, [U] unverified. Sources point to deck cards (CX-/SG-/PS-), facts in the source log (F-xx) or earlier items (AU-xxx). AU IDs are immutable.
 
 ## Episode 1. Lesson, then constraints to complexity
 
@@ -63,7 +63,7 @@ Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking a
 | AU-103 | An unsorted list and a target. Find the two numbers that add up to the target. | 6s | Hash map, in one pass. For each number, look up its complement. O of N time, O of N space. | SG-012; F-05; F-30 | [V] |
 | AU-104 | Same question, but the list is sorted, and you may only use constant extra space. | 7s | Two pointers from both ends. Sum too small, move the left pointer. Too big, move the right. O of N time, constant space. | SG-013; PS-002; F-16 | [V] |
 | AU-105 | A list of words. Put the words that are anagrams of each other into groups. | 7s | Hash map, keyed by a signature of each word. The sorted letters, or the letter counts. O of N times K, where K is the word length. Add a log K factor if you sort. | F-05; F-22 | [U] |
-| AU-106 | A list of numbers. Return the K values that occur most often. | 7s | Count with a hash map. Then keep a heap of size K. O of N log K. Or bucket by frequency, for O of N. | SG-007; CX-024; F-12; F-34 | [V] |
+| AU-106 | A list of numbers. Return the K values that occur most often. | 7s | Count with a hash map. Then keep a heap of size K, using heapq. O of N log K. Or bucket by frequency, for O of N. | SG-007; CX-024; F-12; F-34 | [V] |
 | AU-107 | An unsorted list. Find the longest run of consecutive integers, in linear time. | 8s | Hash set. Only start counting from a number whose predecessor is missing. O of N time, O of N space. | F-33; F-22 | [U] |
 | AU-108 | For every position, give the product of all the other elements. No division allowed. | 8s | Prefix and suffix products. One pass from the left, one from the right. O of N time. | F-32; F-22 | [V] |
 | AU-109 | Is this phrase a palindrome, ignoring spaces and punctuation? | 6s | Two pointers, one at each end, moving inwards. O of N time, constant space. | F-16; F-22 | [V] |
@@ -84,12 +84,12 @@ Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking a
 
 **Lesson (spoken first):**
 
-- List append, and pop from the end, are O of one. Pop from the front of a list is O of N.
-- A deque gives O of one at both ends.
-- Membership in a list is O of N. In a set or a dictionary it is O of one on average.
+- list.append() and list.pop() are O of one. list.pop(0) is O of N.
+- A collections.deque gives O of one at both ends. That is deque.append(), deque.appendleft(), deque.pop() and deque.popleft().
+- Membership with the in operator is O of N on a list. On a set or a dict it is O of one on average.
 - A slice copies, so it costs the length of the slice.
-- Sorting is O of N log N.
-- Heap push and heap pop are O of log N. Heapify, on a whole list, is O of N.
+- sorted() and list.sort() are O of N log N.
+- heapq.heappush() and heapq.heappop() are O of log N. heapq.heapify(), on a whole list, is O of N.
 - Now the questions.
 
 | ID | Cue | Gap | Answer + reason | Source | Tag |
@@ -99,7 +99,7 @@ Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking a
 | AU-203 | Two nested loops over the same list. The inner loop starts just after the outer index. | 6s | Time O of N squared. Space O of one. It is about half of N squared pairs, and the half does not count. | CX-003 | [V] |
 | AU-204 | A while loop that halves a number, until it reaches zero. | 6s | Time O of log N. Space O of one. Halving each step gives log N steps. | CX-004 | [V] |
 | AU-205 | A for loop over N items. Inside it, a binary search on a sorted list of N items. | 6s | Time O of N log N. N searches, at log N each. Space O of one. | CX-005; CX-011; F-13 | [V] |
-| AU-206 | Make a sorted copy of a list. Then one pass, comparing neighbours. | 7s | Time O of N log N. The sort dominates the pass. Space O of N, for the sorted copy. | CX-007; F-06; F-07 | [V] |
+| AU-206 | Make a sorted copy of a list with sorted(). Then one pass, comparing neighbors. | 7s | Time O of N log N. The sort dominates the pass. Space O of N, for the sorted copy. | CX-007; F-06; F-07 | [V] |
 | AU-207 | A loop over N items. For each one, check if it is already in a list of seen items, then append it. | 7s | Time O of N squared. Membership in a list scans the whole list. Space O of N. | CX-008; F-02 | [V] |
 | AU-208 | The same code, but seen items are kept in a set. | 6s | Time O of N on average. Set lookup is O of one on average. Space O of N. | CX-009; F-05 | [V] |
 | AU-209 | A loop over a string of length N. On each step, take a slice from the current index to the end. | 7s | Time O of N squared. Each slice copies up to N characters. Pass indices instead. | CX-010; F-03 | [V] |
@@ -107,10 +107,10 @@ Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking a
 | AU-211 | An outer loop that runs N times. An inner loop that doubles a counter until it reaches N. | 7s | Time O of N log N. The inner loop runs log N times. Space O of one. | CX-011 | [V] |
 | AU-212 | A for loop moves a right pointer across a string. Inside, a while loop moves a left pointer forward. The left pointer never moves back. | 8s | Time O of N. It looks nested, but each pointer moves forward at most N times. Two N in total. | CX-012; F-14 | [V] |
 | AU-213 | A loop over N numbers. Each index is pushed on a stack. Before pushing, a while loop pops every smaller number. | 8s | Time O of N. Each index is pushed once and popped at most once. Space O of N for the stack. | SG-015; F-18 | [V] |
-| AU-214 | A queue built on a plain Python list. A loop removes the front item N times, with pop zero. | 7s | Time O of N squared. Pop from the front shifts every other item. Use a deque. Pop left is O of one. | F-01; F-08 | [V] |
-| AU-215 | Call heapify on a list of N numbers. | 6s | Time O of N. Not N log N. It works in place, so extra space is O of one. | CX-013; F-09 | [V] |
-| AU-216 | Start with an empty heap. Push N numbers, one at a time. | 6s | Time O of N log N. Each push is O of log N. Heapify would do the same job in O of N. | CX-014; F-10; F-11 | [V] |
-| AU-217 | Scan N numbers. Push each one on a heap. Whenever the heap grows past K items, pop the smallest. | 8s | Time O of N log K. The heap never holds more than K plus one items. Space O of K. | CX-024; PS-005; SG-007; F-12 | [V] |
+| AU-214 | A queue built on a plain Python list. A loop removes the front item N times, with list.pop(0). | 7s | Time O of N squared. list.pop(0) shifts every other item. Use a collections.deque. deque.popleft() is O of one. | F-01; F-08 | [V] |
+| AU-215 | Call heapq.heapify() on a list of N numbers. | 6s | Time O of N. Not N log N. It works in place, so extra space is O of one. | CX-013; F-09 | [V] |
+| AU-216 | Start with an empty list. Call heapq.heappush() N times, once for each number. | 6s | Time O of N log N. Each heapq.heappush() is O of log N. heapq.heapify() would do the same job in O of N. | CX-014; F-10; F-11 | [V] |
+| AU-217 | Scan N numbers. Call heapq.heappush() for each one. Whenever the heap grows past K items, call heapq.heappop(). | 8s | Time O of N log K. The heap never holds more than K plus one items, and heapq.heappop() removes the smallest. Space O of K. | CX-024; PS-005; SG-007; F-12 | [V] |
 | AU-218 | A loop over N words. Each word has K letters. Inside the loop, sort the letters of the word. | 8s | Time O of N, times K log K. N words, and each sort is K log K. | F-06 | [V] |
 | AU-219 | Count the letters of a lowercase string of length N in a dictionary. Then loop over the twenty six letters. | 7s | Time O of N. Space O of one. The dictionary never holds more than twenty six keys. | CX-012; F-05 | [V] |
 | AU-220 | Sort a list. Then for each element, sweep two pointers inwards over the rest of the list. | 8s | Time O of N squared. N sweeps of O of N each. The sort, at N log N, is the smaller term. | CX-023; F-16 | [V] |
@@ -123,21 +123,21 @@ Voice: Kokoro `bm_lewis`, `lang="en-gb"`, speed 1.0. Item format: cue, ticking a
 | AU-302 | You need to know whether a list contains a duplicate. Pattern and complexity? | 6s | Hash set. O of N time, O of N space. | AU-101 | [V] |
 | AU-303 | A loop of N steps. Each step asks whether a value is in a Python list of up to N items. | 6s | O of N squared. Membership in a list is O of N. Switch to a set. | AU-207 | [V] |
 | AU-304 | Find the longest substring that contains at most two different letters. | 8s | Variable sliding window, with a hash map of letter counts. Shrink from the left when a third letter appears. O of N. | AU-112; F-14 | [V] |
-| AU-305 | What does heapify cost on N items? And what does pushing them one by one cost? | 7s | Heapify is O of N. Pushing one by one is O of N log N. | AU-215; AU-216 | [V] |
+| AU-305 | What does heapq.heapify() cost on N items? And what does calling heapq.heappush() N times cost? | 7s | heapq.heapify() is O of N. N calls to heapq.heappush() are O of N log N. | AU-215; AU-216 | [V] |
 | AU-306 | N is at most eighteen. What kind of solution is being invited? | 6s | An exponential one. Try every subset. Two to the eighteen is about a quarter of a million. | AU-002 | [V] |
 | AU-307 | A sorted array. Find the pair whose sum is closest to a target. Constant extra space. | 8s | Two pointers from both ends. Because the array is sorted, each move rules out a whole set of pairs. O of N time, constant space. | AU-104; F-16 | [V] |
 | AU-308 | A function calls itself on the tail of a list, using a slice, N times. | 8s | O of N squared time. Each slice copies what is left. And O of N stack depth. Pass an index instead. | AU-209; F-03 | [V] |
 | AU-309 | For each bar in a bar chart, find the next bar to the right that is taller. | 7s | Monotonic stack. O of N. Each bar is pushed once and popped once. | AU-119; F-18 | [V] |
 | AU-310 | N is four thousand. You have a quadratic idea, and an N log N idea that is harder to code. Which is acceptable? | 8s | Both. Sixteen million steps is inside the budget. Say that, and start with the simpler one. | AU-003; F-21 | [U] |
-| AU-311 | A queue loop takes items from the front of a plain list with pop zero. What is the hidden cost? | 7s | Each pop zero is O of N. Use a deque, and pop left, for O of one. | AU-214; F-08 | [V] |
+| AU-311 | A queue loop takes items from the front of a plain list with list.pop(0). What is the hidden cost? | 7s | Each list.pop(0) is O of N. Use a collections.deque, and deque.popleft(), for O of one. | AU-214; F-08 | [V] |
 | AU-312 | Find the highest average over any K consecutive numbers. | 7s | Fixed size sliding window. Add the new number, subtract the one that left. O of N time, constant space. | F-15; AU-114 | [V] |
 | AU-313 | A sorted list of one billion numbers. How many steps does binary search need, roughly? | 6s | About thirty. Log base two of a billion. | AU-005 | [V] |
 | AU-314 | Find the longest subarray that sums to K. The values can be negative. | 8s | Prefix sums with a hash map. Not a sliding window, because negatives break the shrink rule. O of N. | AU-117; F-19 | [V] |
-| AU-315 | Sort N numbers, then loop over them once. Time and space? | 6s | Time O of N log N. Space up to O of N, because Python's sort can need a temporary buffer. | AU-206; F-07 | [V] |
+| AU-315 | Sort N numbers with list.sort(), then loop over them once. Time and space? | 6s | Time O of N log N. Space up to O of N, because list.sort() can need a temporary buffer. | AU-206; F-07 | [V] |
 | AU-316 | You see a while loop inside a for loop. When is the total still O of N? | 8s | When the inner loop's pointer only ever moves forward. Then it moves at most N times in total. Sliding windows and monotonic stacks both work this way. | AU-212; AU-213 | [V] |
-| AU-317 | A stream of numbers. Keep track of the K largest seen so far. | 7s | A min heap of size K. Each number costs O of log K. Space O of K. | AU-217; F-12 | [V] |
+| AU-317 | A stream of numbers. Keep track of the K largest seen so far. | 7s | A min heap of size K, using heapq. Each number costs O of log K. Space O of K. | AU-217; F-12 | [V] |
 | AU-318 | N is five hundred, and your idea is cubic. Is that safe in Python? | 7s | Risky. That is one hundred and twenty five million steps. Cubic is safe up to about three hundred. | AU-004; F-21 | [V] |
 | AU-319 | Check whether a line of code has matching brackets and braces. | 6s | Stack. O of N time, O of N space. | AU-118 | [V] |
 | AU-320 | Group a list of words by their first letter. Pattern and complexity? | 6s | Hash map from letter to a list of words. O of N. | AU-105 | [V] |
 | AU-321 | Second time. Membership test: list against set. | 5s | List is O of N. Set is O of one on average. | AU-303; F-02; F-05 | [V] |
-| AU-322 | Second time. Heapify against N pushes. | 5s | Heapify is O of N. N pushes are O of N log N. | AU-305; F-09; F-11 | [V] |
+| AU-322 | Second time. heapq.heapify() against N calls to heapq.heappush(). | 5s | heapq.heapify() is O of N. N calls to heapq.heappush() are O of N log N. | AU-305; F-09; F-11 | [V] |

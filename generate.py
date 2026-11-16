@@ -4,7 +4,7 @@
 Setup (free, no Mac needed):
     pip install kokoro-onnx soundfile numpy
     # model files: github.com/thewh1teagle/kokoro-onnx, release tag model-files-v1.0
-    #   kokoro-v1.0.int8.onnx   voices-v1.0.bin   (put them in ./models)
+    #   kokoro-v1.0.onnx   voices-v1.0.bin   (put them in ./models, or set KOKORO_MODELS)
     # ffmpeg must be on PATH
 
 Usage:
@@ -14,6 +14,7 @@ Usage:
 """
 import hashlib
 import os
+import re
 import subprocess
 import sys
 from email.utils import formatdate
@@ -30,7 +31,28 @@ AUDIO = os.path.join(OUT, "audio")
 CACHE = os.path.join(HERE, ".cache")
 BASE_URL = os.environ.get("BASE_URL", "https://akrthk93.github.io/dsa-audio-drills")
 
-VOICE, LANG, SPEED, SR = "bm_lewis", "en-gb", 1.0, 24000
+MODEL = "kokoro-v1.0.onnx"  # full-precision model; the int8 file sounds flatter
+VOICE, LANG, SPEED, SR = "am_michael", "en-us", 1.0, 24000
+
+# Pronunciation table. content.py keeps the exact Python names; this only decides
+# how they are SPOKEN. Applied in order.
+LEXICON = [
+    (r"\(0\)", " zero"),
+    (r"\(\)", ""),
+    (r"heapq", "heap Q"),
+    (r"heappush", "heap push"),
+    (r"heappop", "heap pop"),
+    (r"appendleft", "append left"),
+    (r"popleft", "pop left"),
+    (r"deque", "deck"),
+    (r"(?<=[A-Za-z])\.(?=[A-Za-z])", " dot "),
+]
+
+
+def spoken(text):
+    for pattern, replacement in LEXICON:
+        text = re.sub(pattern, replacement, text)
+    return text
 # Published dates are fixed so episode order is stable in podcast apps (oldest first).
 PUB_EPOCH = 1794787200  # 2026-11-16 00:00 UTC
 
@@ -38,16 +60,17 @@ _kokoro = None
 
 
 def tts(text):
-    """Synthesize one sentence, cached on disk by text hash."""
+    """Synthesize one passage, cached on disk by text hash."""
     global _kokoro
     os.makedirs(CACHE, exist_ok=True)
-    key = hashlib.sha1(f"{VOICE}|{LANG}|{SPEED}|{text}".encode()).hexdigest()
+    text = spoken(text)
+    key = hashlib.sha1(f"{MODEL}|{VOICE}|{LANG}|{SPEED}|{text}".encode()).hexdigest()
     path = os.path.join(CACHE, key + ".npy")
     if os.path.exists(path):
         return np.load(path)
     if _kokoro is None:
         from kokoro_onnx import Kokoro
-        _kokoro = Kokoro(os.path.join(MODELS, "kokoro-v1.0.int8.onnx"),
+        _kokoro = Kokoro(os.path.join(MODELS, MODEL),
                          os.path.join(MODELS, "voices-v1.0.bin"))
     samples, sr = _kokoro.create(text, voice=VOICE, speed=SPEED, lang=LANG)
     assert sr == SR, sr
@@ -86,37 +109,27 @@ def chime():
 
 
 def say(parts, text, after=0.35):
-    """Speak text sentence by sentence (keeps each TTS call short)."""
-    buf, sentences = "", []
-    for ch in text:
-        buf += ch
-        if ch in ".?!":
-            sentences.append(buf.strip())
-            buf = ""
-    if buf.strip():
-        sentences.append(buf.strip())
-    for s in sentences:
-        parts.append(tts(s))
-        parts.append(silence(0.22))
+    """Speak a whole passage in one call, so the voice keeps natural intonation
+    across its sentences (sentence-by-sentence synthesis sounds flat)."""
+    parts.append(tts(text))
     parts.append(silence(after))
 
 
 def build_episode(ep):
     parts = [silence(0.4)]
     for line in ep["intro"]:
-        say(parts, line, 0.3)
+        say(parts, line, 0.4)
     parts.append(silence(0.5))
     for line in ep["lesson"]:
-        say(parts, line, 0.45)
+        say(parts, line, 0.6)
     parts.append(silence(0.6))
     for i, (aid, cue, pause, answer, _src, _tag) in enumerate(ep["items"], 1):
         parts.append(chime())
         parts.append(silence(0.25))
-        say(parts, f"Question {i}.", 0.1)
-        say(parts, cue, 0.1)
+        say(parts, f"Question {i}. {cue}", 0.1)
         parts.append(thinking_gap(pause))
         parts.append(silence(0.15))
-        say(parts, answer, 0.9)
+        say(parts, answer, 1.1)
     for line in ep["outro"]:
         say(parts, line, 0.3)
     parts.append(silence(0.8))
@@ -174,7 +187,7 @@ def feed():
     <title>{SHOW_TITLE}</title>
     <link>{BASE_URL}/</link>
     <atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
-    <language>en-gb</language>
+    <language>en</language>
     <description>Spoken pattern-recognition and complexity drills for coding interviews. Listen, answer aloud in the gap, hear the answer.</description>
     <itunes:author>Karthik</itunes:author>
     <itunes:summary>Spoken pattern-recognition and complexity drills for coding interviews.</itunes:summary>
@@ -208,6 +221,8 @@ def scripts():
     lines = ["# Audio drill scripts (v1)", "",
              f"Voice: Kokoro `{VOICE}`, `lang=\"{LANG}\"`, speed {SPEED}. "
              "Item format: cue, ticking answer gap, answer plus one-line reason. "
+             "Python names are written exactly; they are spoken as: heapq = \"heap Q\", deque = \"deck\", "
+             "a dot between names = \"dot\", pop(0) = \"pop zero\", popleft = \"pop left\". "
              "Tags: [V] verified, [U] unverified. Sources point to deck cards (CX-/SG-/PS-), "
              "facts in the source log (F-xx) or earlier items (AU-xxx). AU IDs are immutable.", ""]
     for ep in EPISODES:

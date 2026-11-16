@@ -74,9 +74,10 @@ That is about 3×10⁷ empty iterations a second. A real loop body (an index, a 
 - **NeetCode Stack count:** neetcode.io now shows **6** Stack problems; step 8 of the 100-step plan says 7, and most mirrors list 7. I could not see which problem moved because the site is JavaScript-rendered. Check neetcode.io before you start step 8. The audio cues do not depend on the count.
 - **Best-Time-to-Buy-and-Sell-Stock:** NeetCode files it under Sliding Window; the usual solution is a single pass tracking the minimum. AU-113 teaches the single pass and is tagged [U].
 
-## 6. Pronunciation check (from Kokoro's phoneme output, not by ear)
+## 6. Pronunciation and voice (revised 17 Nov, v1.1)
 
-- Fine as written: "O of N", "O of N log N", "N squared", "log N", "amortised", "heapify", "deque" (spoken as "deck").
-- **"heapq" is read as "heepk".** The scripts say "heap" and "heap push" instead.
-- "memoise" is mispronounced; not used in v1. Respell it when DP episodes are written.
-- I cannot listen to audio, so a by-ear check on your first drive is still needed.
+- v1 replaced `heapq` with "heap" because the voice misread it. That was the wrong fix and is reverted: **the scripts now use exact Python names** (`heapq.heappush()`, `heapq.heapify()`, `collections.deque`, `deque.popleft()`, `list.pop(0)`, `list.sort()`, `sorted()`).
+- A pronunciation table in `generate.py` controls only how names are spoken: `heapq` = "heap Q", `deque` = "deck", a dot between names = "dot", `pop(0)` = "pop zero", `popleft` = "pop left", `heappush` = "heap push".
+- Voice changed from `bm_lewis` (graded D+ by Kokoro's author) to `am_michael`, on the full-precision model, reading whole passages instead of single sentences. Karthik picked this from five samples.
+- "memoise" is still mispronounced; not used yet. Add it to the table when DP episodes are written.
+- I cannot listen to audio. Every line was checked from the phoneme output; the full episodes still need one by-ear pass.
